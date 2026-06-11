@@ -828,7 +828,7 @@ function Build-Module {
                         FormatsToProcess  = if($this.Sections.Contains('Format'))   { $this.Sections['Format'].get_Values() }
                     }
                     if (Test-Path $this.psd1) { Update-ModuleManifest @Manifest }
-                    else { New-ModuleManifest -Path @Manifest }
+                    else { New-ModuleManifest @Manifest }
 
                 }
                 Set-Content -LiteralPath $this.psm1 -Value $this.Content -NoNewline
