@@ -822,10 +822,10 @@ function Build-Module {
                     $Manifest = @{
                         Path              = $this.psd1
                         RootModule        = [System.io.Path]::GetFileName($this.psm1)
-                        FunctionsToExport = if($this.Sections.Contains('Cmdlet'))   { $this.Sections['Cmdlet'].get_Keys() }
-                        AliasesToExport   = if($this.Sections.Contains('Alias'))    { $this.Sections['Alias'].get_Keys() }
+                        FunctionsToExport = if($this.Sections.Contains('Cmdlet'))   { $this.Sections['Cmdlet'].get_Keys() }   else {}
+                        AliasesToExport   = if($this.Sections.Contains('Alias'))    { $this.Sections['Alias'].get_Keys() }    else {}
                         VariablesToExport = if($this.Sections.Contains('Variable')) { $this.Sections['Variable'].get_Keys() } else { '*' }
-                        FormatsToProcess  = if($this.Sections.Contains('Format'))   { $this.Sections['Format'].get_Values() }
+                        FormatsToProcess  = if($this.Sections.Contains('Format'))   { $this.Sections['Format'].get_Values() } else {}
                     }
                     if (Test-Path $this.psd1) { Update-ModuleManifest @Manifest }
                     else { New-ModuleManifest @Manifest }
